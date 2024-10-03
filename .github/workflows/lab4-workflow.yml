@@ -7,6 +7,8 @@ on:
 jobs:
     npm-package:
       runs-on: ubuntu-latest
+      permissions:
+        actions: write
       steps:
         - name: Checkout Repository
           uses: actions/checkout@v4
@@ -18,3 +20,8 @@ jobs:
 
         - name: Install NPM
           run: npm install
+
+        - name: NPM Publish
+          run: npm publish
+          env:
+            NODE_AUTH_TOKEN: ${{ github.token }}
